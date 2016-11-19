@@ -347,7 +347,21 @@ $$(document).on('pageInit',function(e){
 
     if (page.name === 'message') {
          var user_id = $$('.statusbar-overlay').data('userid');
+         $$('.popover-inner').hide();
+           var popupHTML = '<div class="popup">'+
+                          '<div class="content-block">'+
+                            '<center><img src="./img/ripple.gif"><h1>Finding Available Tech Support For You.</h1></center>'+ '</div>'+
+                        '</div>'
+            myApp.popup(popupHTML);
+            setTimeout(function () {
+              $$('.popup ').hide();
+               myApp.alert('We Found Klemfer');
+            }, 15000);
+         
+
+
          var conversationStarted = false;
+
          var query = firebase.database().ref("users").orderByKey();
           query.once("value")
             .then(function(snapshot) {
@@ -385,11 +399,6 @@ $$(document).on('pageInit',function(e){
                     day: !conversationStarted ? 'Today' : false,
                     time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
                   })
-
-                  $$.get('http://api.semaphore.co/api/sms -d "api=PFpGxb3vGHhL1zYxVXKp&number=[YOUR NUMBER]&message=test"',function (data) {
-                    console.log(data);
-                  });
-
                  
                   // Update conversation flag
                   conversationStarted = true;       

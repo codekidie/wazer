@@ -3417,8 +3417,8 @@ label.label-radio.active-state .item-inner:after {
 /* === Floating Action Button === */
 .floating-button {
   position: absolute;
-  right: 16px;
-  bottom: 16px;
+  bottom: 60px;
+  left: 10px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
