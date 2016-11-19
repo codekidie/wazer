@@ -399,6 +399,7 @@ $$(document).on('pageInit',function(e){
                     day: !conversationStarted ? 'Today' : false,
                     time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
                   })
+
                  
                   // Update conversation flag
                   conversationStarted = true;       
@@ -415,18 +416,6 @@ $$(document).on('pageInit',function(e){
 
 
 
-         // var query = firebase.database().ref("message").once('value').then(function(snapshot) {
-         //            snapshot.forEach(function(childSnapshot) {
-
-         //                var childData = childSnapshot.val();
-         //                var fullname = childData.fullname;
-         //                var message = childData.message;
-         //                var image = childData.image;
-
-         //                $$('.messages-auto-layout').append('<div class="message message-received message-with-avatar message-last message-with-tail message-first"><div class="message-name">'+fullname+'</div><div class="message-text">'+message+'</div><div style="background-image:url('+image+')" class="message-avatar"></div></div>');
-         //          });
-         //    });  
-
         $$('.messagebar .link').on('click', function () {
              var message = $$('.not-empty-state').val();  
 
@@ -435,12 +424,18 @@ $$(document).on('pageInit',function(e){
             var newMessage = ref.push();
             var fullname =  $$('.fullname').val();
             var image =  $$('.image').val();
+            var contact =  $$('.contact').val();
 
             newMessage.set({
               fullname: fullname,
               image: image,
               message: message,
+              contact: contact,
             });    
+
+            $$.get('http://api.clickatell.com/http/sendmsg?user=perikles28&password=VfWXLWeeKfeKOY&api_id=3538547&to=639436089485&text='+message, function (data) {
+                console.log(data);
+              });
 
         });         
     }
