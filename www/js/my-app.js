@@ -356,7 +356,7 @@ $$(document).on('pageInit',function(e){
             setTimeout(function () {
               $$('.popup ').hide();
                myApp.alert('We Found Klemfer');
-            }, 15000);
+            }, 5000);
          
 
 
@@ -415,17 +415,17 @@ $$(document).on('pageInit',function(e){
 
 
 
-         var query = firebase.database().ref("message").once('value').then(function(snapshot) {
-                    snapshot.forEach(function(childSnapshot) {
+         // var query = firebase.database().ref("message").once('value').then(function(snapshot) {
+         //            snapshot.forEach(function(childSnapshot) {
 
-                        var childData = childSnapshot.val();
-                        var fullname = childData.fullname;
-                        var message = childData.message;
-                        var image = childData.image;
+         //                var childData = childSnapshot.val();
+         //                var fullname = childData.fullname;
+         //                var message = childData.message;
+         //                var image = childData.image;
 
-                        $$('.messages-auto-layout').append('<div class="message message-received message-with-avatar message-last message-with-tail message-first"><div class="message-name">'+fullname+'</div><div class="message-text">'+message+'</div><div style="background-image:url('+image+')" class="message-avatar"></div></div>');
-                  });
-            });  
+         //                $$('.messages-auto-layout').append('<div class="message message-received message-with-avatar message-last message-with-tail message-first"><div class="message-name">'+fullname+'</div><div class="message-text">'+message+'</div><div style="background-image:url('+image+')" class="message-avatar"></div></div>');
+         //          });
+         //    });  
 
         $$('.messagebar .link').on('click', function () {
              var message = $$('.not-empty-state').val();  
