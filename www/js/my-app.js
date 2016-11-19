@@ -23,9 +23,6 @@ var mainView = myApp.addView('.view-main', {
     domCache:false,
 });
 
-
-
-
 function showloader()
 {
    myApp.showPreloader();
@@ -255,16 +252,6 @@ myApp.onPageInit('register-screen', function (page) {
 
 
 
-
-
-myApp.onPageInit('home', function(page) { 
-      $$('.hideonlogin').show();
-      $$('.navbar').show();
-
-});
-
-
-
 myApp.onPageInit('location', function(page) { 
      $$('.hideonlogin').show();
      $$('.navbar').show();
@@ -341,13 +328,11 @@ $$(document).on('pageInit',function(e){
               var key = childSnapshot.key;
               var childData = childSnapshot.val();
               if (key == user_id) {
-                
                 $$('.username').html(childData.username);
                 $$('.fullname').html(childData.fullname);
-
                 $$(".fullname").css("background-image", 'url('+childData.image+')');
 
-                 mainView.router.loadPage({url:'home.html', ignoreCache:true, reload:true })
+                 mainView.router.loadPage({url:'account.html', ignoreCache:true, reload:true })
                  return true;
 
               }
@@ -358,6 +343,97 @@ $$(document).on('pageInit',function(e){
 
     if (page.name === 'disclaimer') {
      
+    }
+
+    if (page.name === 'message') {
+         var user_id = $$('.statusbar-overlay').data('userid');
+         var conversationStarted = false;
+         var query = firebase.database().ref("users").orderByKey();
+          query.once("value")
+            .then(function(snapshot) {
+              snapshot.forEach(function(childSnapshot) {
+                var key = childSnapshot.key;
+                var childData = childSnapshot.val();
+                if (key == user_id) {
+                  var current_user_fullname = childData.fullname;
+                  var current_user_image = childData.image;
+                    $$('.fullname').val(current_user_fullname);
+                    $$('.image').val(current_user_image);
+                }
+            });
+          });
+
+
+            var startListening = function() {
+              firebase.database().ref("message").on('child_added', function(snapshot) {
+                var msg = snapshot.val();
+                var myMessages = myApp.messages('.messages', {
+                    autoLayout:true
+                 });
+
+                  var messageType = (['sent', 'received'])[Math.round(Math.random())];
+
+                  myMessages.addMessage({
+                    // Message text
+                    text: msg.message,
+                    // Random message type
+                    type: messageType,
+                    // Avatar and name:
+                    avatar: msg.image,
+                    name: msg.fullname,
+                    // Day
+                    day: !conversationStarted ? 'Today' : false,
+                    time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
+                  })
+
+                  $$.get('http://api.semaphore.co/api/sms -d "api=PFpGxb3vGHhL1zYxVXKp&number=[YOUR NUMBER]&message=test"',function (data) {
+                    console.log(data);
+                  });
+
+                 
+                  // Update conversation flag
+                  conversationStarted = true;       
+
+                  $$('.not-empty-state').val('');  
+
+
+                  });
+            }
+
+            // Begin listening for data
+            startListening();
+
+
+
+
+         var query = firebase.database().ref("message").once('value').then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+
+                        var childData = childSnapshot.val();
+                        var fullname = childData.fullname;
+                        var message = childData.message;
+                        var image = childData.image;
+
+                        $$('.messages-auto-layout').append('<div class="message message-received message-with-avatar message-last message-with-tail message-first"><div class="message-name">'+fullname+'</div><div class="message-text">'+message+'</div><div style="background-image:url('+image+')" class="message-avatar"></div></div>');
+                  });
+            });  
+
+        $$('.messagebar .link').on('click', function () {
+             var message = $$('.not-empty-state').val();  
+
+            var db = firebase.database();
+            var ref = db.ref("message");
+            var newMessage = ref.push();
+            var fullname =  $$('.fullname').val();
+            var image =  $$('.image').val();
+
+            newMessage.set({
+              fullname: fullname,
+              image: image,
+              message: message,
+            });    
+
+        });         
     }
 
 })
