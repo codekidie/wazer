@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src * 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+    
+    <link rel="stylesheet" href="css/my-app.css">
+    <title>Faact</title>
+</head>
+
+<body>
+<!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay" data-userid=""></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+      <div class="content-block">
+      <div class="list-block">
+
+                <ul>
+                  <li><a href="home.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title"><img src="img/home.png" alt=""> Home</div>
+                        </div>
+                      </div></a>
+                  </li>
+                    <li><a href="results.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title"> <div class="item-title"><img src="img/medical-result.png" alt=""> Results</div>
+                        </div>
+                      </div></a>
+                  </li>
+                  <li><a href="home.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/consulting-message.png" alt=""> Review</div>
+                        </div>
+                      </div></a>
+                  </li>
+
+                  <li><a href="home.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title"> <div class="item-title"><img src="img/trophy.png" alt=""> Achievements</div>
+                        </div>
+                      </div></a>
+                  </li>
+
+                  <li><a href="home.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/info.png" alt=""> How To</div>
+                        </div>
+                      </div></a>
+                  </li>
+
+                  <li><a href="home.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/right-quotation-mark.png" alt=""> Inspirational Quote</div>
+                        </div>
+                      </div></a>
+                  </li>
+                  <li><a href="account.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/avatar.png" alt="">  My Account</div>
+                        </div>
+                      </div></a>
+                  </li>  
+
+                  <li><a href="about.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/info (1).png" alt="">  About</div>
+                        </div>
+                      </div></a>
+                  </li>
+
+
+                    <li><a href="location.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/placeholder.png" alt=""> Location </div>
+                        </div>
+                      </div></a>
+                  </li>
+
+                  <li><a href="disclaimer.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/info.png" alt=""> Disclaimer</div>
+                        </div>
+                      </div></a>
+                  </li>
+
+                    <li><a href="personalitytest.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/user.png" alt=""> personality test</div>
+                        </div>
+                      </div></a>
+                  </li>
+
+             <!--      <li><a href="questions.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/info.png" alt=""> Add New Personality Test Question</div>
+                        </div>
+                      </div></a>
+                  </li>
+ -->
+                   <li><a href="#" class="signout close-panel">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">  <div class="item-title"><img src="img/logout.png" alt=""> Sign Out</div>
+                        </div>
+                      </div></a>
+                  </li>
+
+
+
+                </ul>
+              </div>
+      </div>
+    </div>
+
+    <!-- Views-->
+    <div class="views">
+        <div class="view view-main">
+
+            <div class="pages">
+                <div class="navbar">
+                  <div class="navbar-inner">
+                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                    <div class="center sliding"><center>Faact</center></div>
+                    <div class="right hideonlogin"><a href="#" class="open-panel link icon-only hideonlogin" style="height:0px !important;"><img class="hideonlogin" src="img/menu.png" alt=""></a></div>
+
+                  </div>
+                </div>
+
+                <div class="page navbar-fixed">
+                        <div class="page-content">
+                              <div class="content-block">
+                              
+                                <center><img data-src="img/logo.png" class="lazy"></center>
+                                <p class="buttons-row">
+                                  <a href="login-screen-page.html" class="open-login-screen button button-big button-fill button-raised color-blue">Login</a>
+                                  <a href="register-screen.html" class="open-login-screen button button-big button-fill button-raised color-teal">Register</a>
+                                </p>    
+                             
+                            </div>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <script type="text/javascript" src="../platforms/browser/www/cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCMwT4MxXMtf42ycnlusXGTINrjWT1-15A"></script>
+
+    <script type="text/javascript" src="js/gmaps.js"></script>
+    <script type="text/javascript" src="../plugins/plugin.google.maps/www/googlemaps-cdv-plugin.js"></script>
+
+    <script src="https://www.bunnyradar.com/assets/admin/js/oms.min.js"></script> 
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAuxRYIk0OxiZHkM79BxconQMkiVZ0Ueoo",
+        authDomain: "faact-7d8fc.firebaseapp.com",
+        databaseURL: "https://faact-7d8fc.firebaseio.com",
+        storageBucket: "faact-7d8fc.appspot.com",
+        messagingSenderId: "405325414178"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>
